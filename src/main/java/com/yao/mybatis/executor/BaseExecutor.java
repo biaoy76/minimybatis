@@ -21,7 +21,7 @@ public class BaseExecutor implements Executor {
         prepare();
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gms?useUnicode=true&useSSL=true",
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gms?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
                     "root", "root");
             String format = String.format(sql, params);
             PreparedStatement preparedStatement = connection.prepareStatement(format);
@@ -29,9 +29,9 @@ public class BaseExecutor implements Executor {
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Map<String, Object>> maps = rsToList(resultSet);
 
-            if (maps.size() == 0) {
+            if (maps.size() >= 1) {
                 Map<String, Object> stringObjectMap = maps.get(0);
-                return BeanUtils.map2bean(stringObjectMap, User.class);
+                return (T)BeanUtils.map2bean(stringObjectMap, User.class);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,6 +42,7 @@ public class BaseExecutor implements Executor {
     public void prepare() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("加载成功");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
