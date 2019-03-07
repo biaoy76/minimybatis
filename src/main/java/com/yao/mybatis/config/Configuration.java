@@ -7,4 +7,24 @@ package com.yao.mybatis.config;
  * @description
  */
 public class Configuration {
+
+    private String scanPath;
+
+    private MapperRegistry mapperRegistry = new MapperRegistry();
+
+    public String getScanPath() {
+        return scanPath;
+    }
+
+    public void setScanPath(String scanPath) {
+        this.scanPath = scanPath;
+    }
+
+    public MapperRegistry getMapperRegistry() {
+        return mapperRegistry;
+    }
+
+    public void setMapperRegistry(MapperRegistry mapperRegistry) {
+        this.mapperRegistry = mapperRegistry;
+    }
 }

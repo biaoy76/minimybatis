@@ -1,5 +1,6 @@
 package com.yao.mybatis.executor;
 
+import com.yao.mybatis.config.Configuration;
 import com.yao.mybatis.test.User;
 import com.yao.mybatis.util.BeanUtils;
 
@@ -17,6 +18,13 @@ import java.util.Map;
  * @description
  */
 public class BaseExecutor implements Executor {
+    private Configuration configuration;
+
+    public BaseExecutor(Configuration configuration) {
+        this.configuration = configuration;
+    }
+
+    //StatementHandler->ParameterHandler->ResultSetHandler
     public <T> T query(String sql, Object params) {
         prepare();
 
@@ -79,4 +87,7 @@ public class BaseExecutor implements Executor {
         return list;
     }
 
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
 }
