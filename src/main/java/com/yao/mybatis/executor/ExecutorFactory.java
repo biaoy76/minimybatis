@@ -14,6 +14,9 @@ public class ExecutorFactory {
         if (ExecutorType.SIMPLE.equals(type)) {
             return new SimpleExecutor(configuration);
         }
+        if (ExecutorType.CASHING.equals(type)) {
+            return new CachingExecutor(configuration);
+        }
         throw new RuntimeException("类型错误");
     }
 

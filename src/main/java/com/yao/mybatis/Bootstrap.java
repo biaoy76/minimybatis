@@ -18,9 +18,12 @@ public class Bootstrap {
         configuration.setScanPath("com.yao");
         configuration.setMapperRegistry(new MapperRegistry());
 
-        SqlSession sqlSession = new SqlSession(configuration, ExecutorFactory.get(ExecutorFactory.ExecutorType.SIMPLE, configuration));
+        SqlSession sqlSession = new SqlSession(configuration, ExecutorFactory.get(ExecutorFactory.ExecutorType.CASHING, configuration));
 
         TestMapper mapper = sqlSession.getMapper(TestMapper.class);
+        System.out.println(mapper.getUserById(2));
+
+        System.out.println(mapper.getUserById(2));
         System.out.println(mapper.getUserById(2));
     }
 }

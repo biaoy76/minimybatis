@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
  * @author biaoy
  * @version 1.0
  * @date 2019/3/6 20:07
- * @description
+ * @description Mapper接口代理类
  */
 public class MapperProxy<T> implements InvocationHandler {
     private final SqlSession sqlSession;
