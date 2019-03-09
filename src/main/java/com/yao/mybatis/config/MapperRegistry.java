@@ -21,7 +21,7 @@ public class MapperRegistry {
      * 2.JavaBean的属性顺序要和数据库表的顺序一致
      */
     public MapperRegistry() {
-        methodSqlMapping.put("com.yao.mybatis.test.TestMapper.selectUserById",
+        methodSqlMapping.put("com.yao.mybatis.test.TestMapper.getUserById",
                 new MapperData("select * from sys_user", User.class));
     }
 

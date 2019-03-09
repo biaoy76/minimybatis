@@ -1,5 +1,7 @@
 package com.yao.mybatis.executor;
 
+import com.yao.mybatis.config.MapperRegistry;
+
 /**
  * @author biaoy
  * @version 1.0
@@ -7,5 +9,5 @@ package com.yao.mybatis.executor;
  * @description
  */
 public interface Executor {
-    <T> T query(String statement, Object params);
+    <T> T query(MapperRegistry.MapperData statement, Object params);
 }

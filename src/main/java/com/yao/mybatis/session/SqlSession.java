@@ -1,6 +1,7 @@
 package com.yao.mybatis.session;
 
 import com.yao.mybatis.config.Configuration;
+import com.yao.mybatis.config.MapperRegistry;
 import com.yao.mybatis.executor.Executor;
 import com.yao.mybatis.mapper.MapperProxy;
 
@@ -32,7 +33,18 @@ public class SqlSession {
         return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, new MapperProxy(this, clazz));
     }
 
-    public <T> T selectOne(String statement, Object params) {
+    /**
+     * 查询一条记录
+     * @param <T>
+     * @param statement
+     * @param params
+     * @return
+     */
+    public <T> T selectOne(MapperRegistry.MapperData statement, Object params) {
         return this.executor.query(statement, params);
+    }
+
+    public Configuration getConfiguration() {
+        return configuration;
     }
 }
